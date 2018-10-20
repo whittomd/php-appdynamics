@@ -3,12 +3,3 @@ services:
   php-fpm:
     build:
       context: .
-#    environment:
-#      APPD_ENABLE: 1
-#      APPD_ACCOUNTNAME: 12345
-#      APPD_ACCOUNTKEY: 12345
-#      APPD_CONTROLLER: "localhost"
-#      APPD_PORT: 8091
-#      APPD_APP: "S1"
-#      APPD_TIER: "idp"
-#      APPD_NODE: "test"
