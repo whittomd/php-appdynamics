@@ -24,9 +24,12 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
     && docker-php-ext-enable memcached
 RUN pecl install redis && docker-php-ext-enable redis
 RUN pecl install apcu && docker-php-ext-enable apcu
+RUN docker-php-ext-install mysqli
 ADD appdynamics-php-agent-linux_x64/appdynamics-php-agent-linux_x64.tar.bz2 /opt/
 ADD installAndStart.sh /usr/local/bin/installAndStart.sh
 RUN php --ini
 RUN chmod u+x /usr/local/bin/installAndStart.sh
+RUN docker-php-ext-install pdo
+RUN php -m
 #RUN apt-get update && apt-get install procps
 ENTRYPOINT ["/usr/local/bin/installAndStart.sh"]
