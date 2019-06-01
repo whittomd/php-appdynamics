@@ -21,10 +21,12 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-enable imagick
 RUN apt-get update && apt-get install -y libmemcached-dev \
     && pecl install memcached \
-        && docker-php-ext-enable memcached
+    && docker-php-ext-enable memcached
 RUN pecl install redis && docker-php-ext-enable redis
+RUN pecl install apcu && docker-php-ext-enable apcu
 ADD appdynamics-php-agent-linux_x64/appdynamics-php-agent-linux_x64.tar.bz2 /opt/
 ADD installAndStart.sh /usr/local/bin/installAndStart.sh
+RUN php --ini
 RUN chmod u+x /usr/local/bin/installAndStart.sh
 #RUN apt-get update && apt-get install procps
 ENTRYPOINT ["/usr/local/bin/installAndStart.sh"]
